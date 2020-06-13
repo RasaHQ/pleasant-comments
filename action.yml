@@ -4,16 +4,15 @@ inputs:
   id:
     description: 'Used to identify old comments to delete'
     required: true
-  comment:
+  body:
     description: 'Comment to be added to the issue / PR'
-    required: true
-  issue:
-    description: 'Issue / PR the comment should be added to'
     required: true
   github-token:
     description: 'Access token used to add / delete comments'
+    required: true
+  issue:
+    description: 'Issue / PR the comment should be added to. Defaults to current Issue / PR.'
     required: false
-    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'

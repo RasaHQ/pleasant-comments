@@ -12,20 +12,20 @@ makes sure the PRs comment section stays clean.
 **Required** Identifier used to find this comment again. When this action is rerun
 it will delete all previous comments with the same `id`. 
 
-### `comment`
+### `body`
 
 **Required** Comment that will be posted on the issue / PR. 
 
+### `github-token`
+
+**Required** Access token used to add / delete comments. If you want to use this 
+action for community PRs, you need to specify a personal access token, otherwise
+the action won't be able to delete old comments.  
+
 ### `issue`
 
-**Required** Number of the issue / PR to post the comment on.
-
-### `github_token`
-
-**Optional** Access token used to add / delete comments. By default the action runners
-github token is used. If you want to use this 
-action for community PRs, you need to specify a personal access token, otherwise
-the action won't be able to delete old comments  
+**Optional** Number of the issue / PR to post the comment on. Defaults to the issue / 
+PR the action is running on.
 
 ## Example usage
 
@@ -33,6 +33,6 @@ the action won't be able to delete old comments
 uses: RasaHQ/pleasant-comments@v1
 with:
   id: 'example-1'
-  comment: 'Hello world!'
-  issue: 234
+  body: 'Hello world!'
+  github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
