@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to test the action
     steps:
-    - uses: RasaHQ/pleasant-comments@master
+    - uses: RasaHQ/create-comment@master
       with:
         id: 'test-comment'
         body: 'Hello world!'
