@@ -9,6 +9,6 @@ jobs:
     - uses: RasaHQ/create-comment@master
       with:
         id: 'test-comment'
-        mode: 'replace-previous'
+        mode: 'update-previous'
         body: 'Hello world! Run ID: ${{github.run_id}}'
         github-token: ${{secrets.GITHUB_TOKEN}}
