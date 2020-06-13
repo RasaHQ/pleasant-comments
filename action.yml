@@ -1,8 +1,8 @@
-name: 'Pleasant Commenter'
-description: 'Posts a comment to a PR / issues, if re-triggered the old comment will be deleted and a new one added.'
+name: 'Comment on Issue/PR'
+description: 'Posts a comment to a PR / issues. Properly, handles previously made comments.'
 inputs:
   id:
-    description: 'Used to identify old comments to delete'
+    description: 'Used to identify previously made comments'
     required: true
   body:
     description: 'Comment to be added to the issue / PR'

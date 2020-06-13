@@ -1,0 +1,13 @@
+on:
+- pull_request
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    name: A job to test the action
+    steps:
+    - uses: RasaHQ/create-comment@master
+      with:
+        id: 'test-comment'
+        body: 'Hello world!'
+        github-token: ${{secrets.GITHUB_TOKEN}}

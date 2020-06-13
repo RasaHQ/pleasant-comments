@@ -1,22 +1,22 @@
 {
-  "name": "pleasant-comments",
+  "name": "create-comment",
   "version": "1.0.0",
-  "description": "Action which posts a comment to a PR / issues. When re-triggered the old comment will be deleted and a new one added.",
+  "description": "Action which posts a comment to a PR / issues.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RasaHQ/pleasant-comments.git"
+    "url": "git+https://github.com/RasaHQ/create-comment.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RasaHQ/pleasant-comments/issues"
+    "url": "https://github.com/RasaHQ/create-comment/issues"
   },
-  "homepage": "https://github.com/RasaHQ/pleasant-comments#readme",
+  "homepage": "https://github.com/RasaHQ/create-comment#readme",
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^3.0.0"

@@ -11,7 +11,7 @@ async function run() {
     const octokit = github.getOctokit(token);
     const context = github.context;
 
-    const marker = '<!-- pleasant-commenter-id:' + id + ' -->';
+    const marker = '<!-- comment-id:' + id + ' -->';
 
 
     if (!issueNumber) {

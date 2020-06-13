@@ -1,7 +1,8 @@
-# Pleasant Commenter action
+# Issue/PR Commenter action
 
-This action comments on an issue or PR. Before commenting, it will delete
-all previous comments that share the same `id`. Using this action avoids scenarios
+This action comments on an issue or PR. Action allows to specify what happens to 
+previously made comments. E.g. it can just append a new comment, replace an 
+existing one or delete old ones. Deleting or replacing old comments avoids scenarios
 where automated systems post a lot of comments on PRs. Cleaning old comments
 makes sure the PRs comment section stays clean.
 
@@ -9,18 +10,27 @@ makes sure the PRs comment section stays clean.
 
 ### `id`
 
-**Required** Identifier used to find this comment again. When this action is rerun
-it will delete all previous comments with the same `id`. 
+**Required** Identifier used to find previously made comments.
 
 ### `body`
 
-**Required** Comment that will be posted on the issue / PR. 
+**Required** Text of the comment that will be posted on the issue / PR. 
 
 ### `github-token`
 
-**Required** Access token used to add / delete comments. If you want to use this 
-action for community PRs, you need to specify a personal access token, otherwise
-the action won't be able to delete old comments.  
+**Required** Access token used to access the github API. If you want to use this 
+action for community PRs, you need to specify a personal access token (otherwise
+the action won't be able to delete old comments).
+
+### `mode`
+
+**Optional** Specifies what happens to previously made comments. Either one of:
+- `delete-previous`: previous comments will be deleted and a new one added
+- `update-previous`: previous comment will be edited, if it does not exist a new one
+  will be added 
+- `keep-previous`: previous comments will be kept and a new comment will be added 
+
+Defaults to `delete-previous`.
 
 ### `issue`
 
@@ -30,9 +40,10 @@ PR the action is running on.
 ## Example usage
 
 ```yml
-uses: RasaHQ/pleasant-comments@v1
+uses: RasaHQ/create-comment@v1
 with:
   id: 'example-1'
   body: 'Hello world!'
+  mode: 'delete-previous'
   github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
