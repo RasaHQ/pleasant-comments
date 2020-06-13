@@ -38,7 +38,7 @@ async function run() {
     octokit.issues.createComment({
       ...context.repo,
       issue_number: issueNumber,
-      body: body,
+      body: body + '\n\n' + marker,
     });
   } catch (error) {
     core.setFailed(error.message);
