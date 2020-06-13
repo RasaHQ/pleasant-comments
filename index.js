@@ -19,38 +19,45 @@ async function run() {
       return;
     }
 
-    const opts = octokit.issues.listComments.endpoint.merge({
-      ...context.repo,
-      issue_number: issueNumber
-    });
-    const comments = await octokit.paginate(opts);
+    await deleteExistingComments(marker, octokit, issueNumber, context)
+    await addCommentWithMarker(marker, octokit, issueNumber, context)
 
-    for (const comment of comments) {
-      if (comment.body.includes(marker)) {
-        console.log('Need to delete comment: ' + comment.id)
-        octokit.issues.deleteComment({
-          ...context.repo,
-          comment_id: comment.id,
-        });
-      }
-    }
-
-    const markedBody = body + '\n\n' + marker;
-    console.log('Using comment body: ' + markedBody);
-    octokit.issues.createComment({
-      ...context.repo,
-      issue_number: issueNumber,
-      body: markedBody,
-    });
   } catch (error) {
     core.setFailed(error.message);
   }
 }
 
-function getIssueNumber(){
+async function addCommentWithMarker(marker, octokit, issueNumber, context) {
+    const markedBody = body + '\n\n' + marker;
+    octokit.issues.createComment({
+      ...context.repo,
+      issue_number: issueNumber,
+      body: markedBody,
+    });
+}
+
+async function deleteExistingComments(marker, octokit, issueNumber, context) {
+  const opts = octokit.issues.listComments.endpoint.merge({
+    ...context.repo,
+    issue_number: issueNumber
+  });
+  const comments = await octokit.paginate(opts);
+
+  for (const comment of comments) {
+    if (comment.body.includes(marker)) {
+      console.log('About to delete comment: ' + comment.id)
+      octokit.issues.deleteComment({
+        ...context.repo,
+        comment_id: comment.id,
+      });
+    }
+  }
+}
+
+function getIssueNumber() {
   if (github.context.payload.pull_request) {
     return github.context.payload.pull_request.number;
-  }else if(github.context.payload.issue) {
+  } else if (github.context.payload.issue) {
     return github.context.payload.issue.number;
   } else {
     return undefined;
