@@ -11,7 +11,7 @@ async function run() {
     const octokit = github.getOctokit(token);
     const context = github.context;
 
-    const marker = '<!-- pleasant-commenter-id:' + id + ' -->'
+    const marker = '<!-- pleasant-commenter-id:' + id + ' -->';
 
 
     if (!issueNumber) {
@@ -22,8 +22,8 @@ async function run() {
     const opts = octokit.issues.listComments.endpoint.merge({
       ...context.repo,
       issue_number: issueNumber
-    })
-    const comments = await octokit.paginate(opts)
+    });
+    const comments = await octokit.paginate(opts);
 
     for (const comment of comments) {
       if (comment.body.includes(marker)) {
@@ -35,10 +35,12 @@ async function run() {
       }
     }
 
+    const markedBody = body + '\n\n' + marker;
+    console.log('Using comment body: ' + markedBody);
     octokit.issues.createComment({
       ...context.repo,
       issue_number: issueNumber,
-      body: body + '\n\n' + marker,
+      body: markedBody,
     });
   } catch (error) {
     core.setFailed(error.message);
