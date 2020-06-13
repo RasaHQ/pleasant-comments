@@ -20,14 +20,14 @@ async function run() {
     }
 
     await deleteExistingComments(marker, octokit, issueNumber, context)
-    await addCommentWithMarker(marker, octokit, issueNumber, context)
+    await addCommentWithMarker(body, marker, octokit, issueNumber, context)
 
   } catch (error) {
     core.setFailed(error.message);
   }
 }
 
-async function addCommentWithMarker(marker, octokit, issueNumber, context) {
+async function addCommentWithMarker(body, marker, octokit, issueNumber, context) {
     const markedBody = body + '\n\n' + marker;
     octokit.issues.createComment({
       ...context.repo,
