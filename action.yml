@@ -1,0 +1,19 @@
+name: 'Pleasant Commenter'
+description: 'Posts a comment to a PR / issues, if re-triggered the old comment will be deleted and a new one added.'
+inputs:
+  id:
+    description: 'Used to identify old comments to delete'
+    required: true
+  comment:
+    description: 'Comment to be added to the issue / PR'
+    required: true
+  issue:
+    description: 'Issue / PR the comment should be added to'
+    required: true
+  github-token:
+    description: 'Access token used to add / delete comments'
+    required: false
+    default: ''
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

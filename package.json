@@ -1,0 +1,24 @@
+{
+  "name": "pleasant-comments",
+  "version": "1.0.0",
+  "description": "Action which posts a comment to a PR / issues. When re-triggered the old comment will be deleted and a new one added.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RasaHQ/pleasant-comments.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RasaHQ/pleasant-comments/issues"
+  },
+  "homepage": "https://github.com/RasaHQ/pleasant-comments#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^3.0.0"
+  }
+}
