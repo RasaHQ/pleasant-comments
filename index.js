@@ -44,6 +44,7 @@ async function replacePreviousComment(body, marker, octokit, issueNumber, contex
 
   for (const comment of comments) {
     if (comment.body.includes(marker)) {
+      console.log('Found existing comment, will update it. comment id: ' + comment.id);
       octokit.issues.updateComment({
         ...context.repo,
         comment_id: comment.id,
@@ -52,7 +53,7 @@ async function replacePreviousComment(body, marker, octokit, issueNumber, contex
       return;
     }
   }
-  console.log('No existing comment found - creating a new one');
+  console.log('No existing comment found - creating a new one.');
   await addCommentWithMarker(body, marker, octokit, issueNumber, context);
 }
 
@@ -74,7 +75,7 @@ async function deleteExistingComments(marker, octokit, issueNumber, context) {
 
   for (const comment of comments) {
     if (comment.body.includes(marker)) {
-      console.log('About to delete comment: ' + comment.id)
+      console.log('Deleting existing comment with id: ' + comment.id)
       octokit.issues.deleteComment({
         ...context.repo,
         comment_id: comment.id,
