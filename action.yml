@@ -10,6 +10,12 @@ inputs:
   github-token:
     description: 'Access token used to add / delete comments'
     required: true
+  mode:
+    description: >
+      Specifies what happens to previously made comments.
+      One of "delete-previous", "update-previous", "keep-previous".
+    required: false
+    default: "delete-previous"
   issue:
     description: 'Issue / PR the comment should be added to. Defaults to current Issue / PR.'
     required: false
